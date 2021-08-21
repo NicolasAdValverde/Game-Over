@@ -75,3 +75,11 @@ for (const producto of stockProductos) {
     //le agregamos el div creado al contenedor
     contenedor.appendChild(div);
 }
+
+// const comingsoon = document.getElementById("comingsoon");
+
+// comingsoon.innerHTML = `
+//             <div>
+//                 <img src="../Img/comingsoon.jpg" alt="comingsoon" />
+//             </div>
+// `;
