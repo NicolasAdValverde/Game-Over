@@ -1,0 +1,168 @@
+* {
+    padding: 0px;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Shadows Into Light", cursive;
+}
+body {
+    height: 100vh;
+    background-image: url(../Img/ladrillo5.jpg);
+    background-size: cover;
+}
+/* -----INDEX----- */
+
+.grid_index {
+    display: grid;
+    grid-template-columns: 200px 1fr 200px;
+    grid-template-rows: 200px 1fr 1fr;
+    background-image: url(../Img/GameoverIndex.jpg);
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+}
+
+/* BOTON INDEX */
+.div-btn {
+    grid-column: 2/3;
+    grid-row: 4/5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn {
+    font-family: "Tourney", cursive;
+    font-size: 40px;
+    border: 0.5px solid #fff;
+    margin-bottom: 2rem;
+    background-color: #213ebe79;
+    color: #fff;
+    width: 300px;
+}
+
+.btn:hover {
+    background-color: #7d2883;
+    transition: 2s;
+}
+
+header {
+    background-image: url(../Img/izAv5U.gif);
+    background-position: center;
+    background-size: cover;
+    height: 420px;
+    clip-path: polygon(
+        49% 2%,
+        100% 2%,
+        100% 66%,
+        51% 78%,
+        0 100%,
+        0% 60%,
+        0 2%
+    );
+}
+
+.imagen-header {
+    width: 450px;
+    height: 450px;
+    margin-left: 100px;
+    margin-top: 250px;
+}
+
+.nav-container {
+    height: 80px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+ul {
+    display: flex;
+    gap: 35px;
+    margin-right: 100px;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 35px;
+}
+
+.links:hover {
+    background-color: black;
+    transition: 2s;
+}
+
+.welcome-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-welcome {
+    height: 300px;
+}
+
+/* FIN HEADER */
+
+.letsplay-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 300px;
+}
+
+.img-letsplay {
+    margin-left: 10px;
+    width: 30%;
+    clip-path: polygon(
+        0% 20%,
+        60% 20%,
+        60% 0%,
+        100% 50%,
+        60% 100%,
+        60% 80%,
+        0% 80%
+    );
+}
+
+.img-joistick {
+    height: 200px;
+    width: 40%;
+}
+
+.gameOver-img {
+    height: 400px;
+}
+
+/* -----TARJETAS----- */
+
+#tarjetas {
+    height: 100vh;
+
+    max-width: 1200px;
+    margin: 60px auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.producto {
+    max-width: 30%;
+    padding: 10px;
+    margin-bottom: 20px;
+    box-shadow: 2px 6px 3px 3px rgba(255, 255, 255, 0.3);
+    /* color: #fff; */
+    font-size: 22px;
+    text-align: center;
+    background-color: #fff;
+}
+
+.producto img {
+    height: 400px;
+    width: 100%;
+    object-fit: cover;
+}
