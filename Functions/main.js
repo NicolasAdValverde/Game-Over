@@ -18,7 +18,7 @@ header.innerHTML = `
             <a class="links" href="#">Sobre nosotros</a>
         </li>
         <li>
-            <a class="links" href="#">contacto</a>
+            <a class="links" href="#contacto">contacto</a>
         </li>
         <li>
             <a class="links" href="#">Carrito</a>
@@ -71,6 +71,7 @@ for (const producto of stockProductos) {
       <h3>${producto.nombre}</h3>
       <p>Talle: ${producto.categoria}</p>
       <p class="precioProducto">Precio: ${producto.precio}</p>
+      <button class="btn btn-primary" >Añadir a Carrito</button>
   `;
     //le agregamos el div creado al contenedor
     contenedor.appendChild(div);

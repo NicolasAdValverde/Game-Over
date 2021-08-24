@@ -4,6 +4,12 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+            crossorigin="anonymous"
+        />
         <link rel="stylesheet" href="../Styles/Style.css" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -21,10 +27,102 @@
 
         <div id="tarjetas"></div>
 
-        <div id="comingsoon">
+        <div id="contacto" class="form__contenedor">
+            <h2 class="titulo__form">Dejanos tu comentario</h2>
+            <div class="row g-3">
+                <div class="col">
+                    <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Nombre"
+                        aria-label="First name"
+                    />
+                </div>
+                <div class="col">
+                    <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Apellido"
+                        aria-label="Last name"
+                    />
+                </div>
+            </div>
             <div>
-                <img src="../Img/comingsoon.jpg" alt="comingsoon" />
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label"
+                        >Email address</label
+                    >
+                    <input
+                        type="email"
+                        class="form-control"
+                        id="exampleFormControlInput1"
+                        placeholder="mail@ejemplo.com"
+                    />
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label"
+                        >Example textarea</label
+                    >
+                    <textarea
+                        class="form-control"
+                        id="exampleFormControlTextarea1"
+                        rows="3"
+                        placeholder="Dejanos tu comentario"
+                    ></textarea>
+                </div>
             </div>
         </div>
+
+        <footer>
+            <div class="div-footer">
+                <img
+                    class="footer__img"
+                    src="../Img/logoGameOver.png"
+                    alt="game over"
+                />
+            </div>
+            <div class="ul__container">
+                <ul>
+                    <li>
+                        <a href="#">
+                            <img
+                                class="imagen__li"
+                                src="/Img/ig.png"
+                                alt="instagram"
+                            />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img
+                                class="imagen__li"
+                                src="/Img/face.png"
+                                alt="facebook"
+                            />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img
+                                class="imagen__li"
+                                src="/Img/wp.png"
+                                alt="whastapp"
+                            />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img
+                                class="imagen__li"
+                                src="/Img/tw.png"
+                                alt="twitter
+                        "
+                            />
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <p>EN PROCESO...</p>
+        </footer>
     </body>
 </html>
