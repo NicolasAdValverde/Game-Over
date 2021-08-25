@@ -19,7 +19,7 @@ header.innerHTML = `
             <a class="links" href="#contacto">contacto</a>
         </li>
         <li>
-            <a class="links" href="#">Carrito</a>
+            <a class="links" href="#carrito">Carrito</a>
         </li>
     </ul>
 </nav>
@@ -63,8 +63,8 @@ stockProductos.forEach((producto) => {
     div.innerHTML = `
             <img src=${producto.img} >
             <h3>${producto.nombre}</h3>
-            <p>Talle: ${producto.categoria}</p>
-            <p class="precioProducto">Precio: ${producto.precio}</p>
+            <p>Categoria: ${producto.categoria}</p>
+            <p class="precioProducto">Precio: $${producto.precio}</p>
             <button onclick="agregarAlCarrito(${producto.id})"class="btn btn-primary" >Añadir a Carrito</button>
             `;
     // eventos
@@ -80,6 +80,9 @@ function agregarAlCarrito(productoId) {
     let producto = stockProductos.find((el) => el.id === productoId);
     carrito.push(producto);
 
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+    console.log(JSON.parse(localStorage.getItem("carrito")));
+
     mostrarCompra();
 }
 
@@ -90,12 +93,12 @@ const mostrarCompra = () => {
 
     carrito.forEach((producto) => {
         const tr = document.createElement("tr");
-        tr.className = "table-primary";
+        tr.className = "table-striped";
         tr.innerHTML = `
             <th scope="row">${producto.id}</th>
             <td>${producto.nombre}</td>
-            <td>${producto.tipo}</td>
-            <td>${producto.precio}</td>
+            <td>${producto.categoria}</td>
+            <td>$${producto.precio}</td>
 
         `;
 
@@ -104,7 +107,6 @@ const mostrarCompra = () => {
 };
 
 // añadir boton añadido al carrito cuando se añada con un if
-// corregir talle y categoria
 // evento al boton welcome
 // comentar el codigo para exposicion.
 // que sume la compra

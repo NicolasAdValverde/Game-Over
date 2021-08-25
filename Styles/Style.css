@@ -226,11 +226,30 @@ footer {
 
 /* ------table------- */
 
+.titulo-carrito {
+    color: cornsilk;
+    text-align: center;
+    font-size: 50px;
+}
+
 .table {
     width: 500px;
     margin: 20px auto;
+    background-color: rgb(3, 3, 3);
 }
 
 th {
+    color: rgb(255, 255, 255);
+    font-size: 25px;
+    text-align: center;
+}
+
+td {
     color: cornsilk;
+    font-size: 20px;
+    text-align: center;
+}
+
+.img-carrito {
+    height: 30px;
 }
