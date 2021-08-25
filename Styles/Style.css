@@ -12,8 +12,6 @@ body {
 /* -----INDEX----- */
 
 .grid_index {
-    display: grid;
-
     background-image: url(../Img/GameoverIndex.jpg);
     width: 100%;
     height: 100vh;
@@ -22,24 +20,24 @@ body {
 }
 
 /* BOTON INDEX */
-.div-btn {
+.div-btnIndex {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.btn {
+.btnIndex {
     font-family: "Tourney", cursive;
     font-size: 40px;
     border: 0.5px solid #fff;
-    margin-bottom: 2rem;
+    margin-top: 2rem;
     background-color: #213ebe79;
     color: #fff;
     width: 300px;
 }
 
-.btn:hover {
-    background-color: #7d2883;
+.btnIndex:hover {
+    background-color: #7d2883b7;
     transition: 2s;
 }
 
@@ -248,8 +246,4 @@ td {
     color: cornsilk;
     font-size: 20px;
     text-align: center;
-}
-
-.img-carrito {
-    height: 30px;
 }
