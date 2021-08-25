@@ -1,6 +1,4 @@
-//obtenemos el id del dom y lo guardamos en la variable header
 const header = document.getElementById("header");
-// ahora insertamos HTML en la variable header
 header.innerHTML = `
 <div class="nav-container">
 <img
@@ -35,9 +33,7 @@ header.innerHTML = `
 </div>
 `;
 
-//obtenemos el id del DOM y lo guardamos en la variable main
 const main = document.getElementById("main");
-//insertamos html en la variable main
 main.innerHTML = `
 <div class="letsplay-container">
 <img
@@ -57,30 +53,60 @@ main.innerHTML = `
 />
 `;
 
-//obetemos el id y lo guardamos en la variable contenedor
 const contenedor = document.getElementById("tarjetas");
-// usamos un for of para recorrer el stock
-for (const producto of stockProductos) {
-    //creamos una variable div y creamos un elemento div
+
+// for (const producto of stockProductos)
+stockProductos.forEach((producto) => {
     const div = document.createElement("div");
-    //le damos una clase al div creado (que tenemos los estilos en css)
     div.className = "producto";
-    //insertamos html al div creado
+
     div.innerHTML = `
-      <img src=${producto.img} >
-      <h3>${producto.nombre}</h3>
-      <p>Talle: ${producto.categoria}</p>
-      <p class="precioProducto">Precio: ${producto.precio}</p>
-      <button class="btn btn-primary" >Añadir a Carrito</button>
-  `;
-    //le agregamos el div creado al contenedor
+            <img src=${producto.img} >
+            <h3>${producto.nombre}</h3>
+            <p>Talle: ${producto.categoria}</p>
+            <p class="precioProducto">Precio: ${producto.precio}</p>
+            <button onclick="agregarAlCarrito(${producto.id})"class="btn btn-primary" >Añadir a Carrito</button>
+            `;
+    // eventos
+
     contenedor.appendChild(div);
+});
+
+// funcion pushear elemento al carrito
+// filter o find
+const carrito = [];
+
+function agregarAlCarrito(productoId) {
+    let producto = stockProductos.find((el) => el.id === productoId);
+    carrito.push(producto);
+
+    mostrarCompra();
 }
 
-// const comingsoon = document.getElementById("comingsoon");
+const tableBody = document.getElementById("tabla-contenedor");
 
-// comingsoon.innerHTML = `
-//             <div>
-//                 <img src="../Img/comingsoon.jpg" alt="comingsoon" />
-//             </div>
-// `;
+const mostrarCompra = () => {
+    tableBody.innerHTML = "";
+
+    carrito.forEach((producto) => {
+        const tr = document.createElement("tr");
+        tr.className = "table-primary";
+        tr.innerHTML = `
+            <th scope="row">${producto.id}</th>
+            <td>${producto.nombre}</td>
+            <td>${producto.tipo}</td>
+            <td>${producto.precio}</td>
+
+        `;
+
+        tableBody.appendChild(tr);
+    });
+};
+
+// añadir boton añadido al carrito cuando se añada con un if
+// corregir talle y categoria
+// evento al boton welcome
+// comentar el codigo para exposicion.
+// que sume la compra
+// funcion quitar elemento del carrito
+// sumar o restar cuentas del carrito

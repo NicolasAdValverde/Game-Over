@@ -223,3 +223,14 @@ footer {
 .imagen__li:hover {
     background-color: blueviolet;
 }
+
+/* ------table------- */
+
+.table {
+    width: 500px;
+    margin: 20px auto;
+}
+
+th {
+    color: cornsilk;
+}

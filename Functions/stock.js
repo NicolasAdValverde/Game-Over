@@ -5,6 +5,7 @@ let stockProductos = [
         categoria: "Deportes",
         precio: 4200,
         img: "../Img/fifa22.jpeg",
+        stock: 10,
     },
 
     {
@@ -13,6 +14,7 @@ let stockProductos = [
         categoria: "Deportes",
         precio: 4800,
         img: "../Img/nba.jpg",
+        stock: 10,
     },
 
     {
@@ -21,6 +23,7 @@ let stockProductos = [
         categoria: "Deportes",
         precio: 4200,
         img: "../Img/nfl.jpg",
+        stock: 10,
     },
 
     {
@@ -29,6 +32,7 @@ let stockProductos = [
         categoria: "Deportes",
         precio: 4075,
         img: "../Img/granturismo.jpg",
+        stock: 10,
     },
 
     {
@@ -37,6 +41,7 @@ let stockProductos = [
         categoria: "Deportes",
         precio: 4500,
         img: "../Img/tony.jpg",
+        stock: 10,
     },
 
     {
@@ -45,6 +50,7 @@ let stockProductos = [
         categoria: "Acción",
         precio: 3700,
         img: "../Img/gta.jpg",
+        stock: 10,
     },
 
     {
@@ -53,6 +59,7 @@ let stockProductos = [
         categoria: "Acción",
         precio: 4200,
         img: "../Img/TheLastOfUs.jpg",
+        stock: 10,
     },
 
     {
@@ -61,6 +68,7 @@ let stockProductos = [
         categoria: "Acción",
         precio: 4750,
         img: "../Img/god.jpg",
+        stock: 10,
     },
 
     {
@@ -69,6 +77,7 @@ let stockProductos = [
         categoria: "Acción",
         precio: 6000,
         img: "../Img/fortnite.jpg",
+        stock: 10,
     },
 
     {
@@ -77,6 +86,7 @@ let stockProductos = [
         categoria: "Acción",
         precio: 4400,
         img: "../Img/farcry.jpg",
+        stock: 10,
     },
 
     {
@@ -85,6 +95,7 @@ let stockProductos = [
         categoria: "Aventura",
         precio: 6700,
         img: "../Img/mine.jpg",
+        stock: 10,
     },
 
     {
@@ -93,6 +104,7 @@ let stockProductos = [
         categoria: "Aventura",
         precio: 4700,
         img: "../Img/spiderman.jpg",
+        stock: 10,
     },
 
     {
@@ -101,6 +113,7 @@ let stockProductos = [
         categoria: "Aventura",
         precio: 3800,
         img: "../Img/watchdog.jpg",
+        stock: 10,
     },
 
     {
@@ -109,6 +122,7 @@ let stockProductos = [
         categoria: "Aventura",
         precio: 7400,
         img: "../Img/assasins.jpg",
+        stock: 10,
     },
 
     {
@@ -117,6 +131,7 @@ let stockProductos = [
         categoria: "Aventura",
         precio: 5600,
         img: "../Img/tombraider.jpg",
+        stock: 10,
     },
 
     {
@@ -125,6 +140,7 @@ let stockProductos = [
         categoria: "Terror",
         precio: 4800,
         img: "../Img/outlast.jpg",
+        stock: 10,
     },
 
     {
@@ -133,6 +149,7 @@ let stockProductos = [
         categoria: "Terror",
         precio: 5500,
         img: "../Img/resident.jpg",
+        stock: 10,
     },
 
     {
@@ -141,6 +158,7 @@ let stockProductos = [
         categoria: "Terror",
         precio: 6000,
         img: "../Img/silenthill.jpg",
+        stock: 10,
     },
 
     {
@@ -149,6 +167,7 @@ let stockProductos = [
         categoria: "Terror",
         precio: 4200,
         img: "../Img/exorcist.jpg",
+        stock: 10,
     },
 
     {
@@ -157,6 +176,7 @@ let stockProductos = [
         categoria: "Terror",
         precio: 3900,
         img: "../Img/until.jpg",
+        stock: 10,
     },
     {
         id: 21,
@@ -164,5 +184,6 @@ let stockProductos = [
         categoria: "Terror",
         precio: 4900,
         img: "../Img/evil.jpg",
+        stock: 10,
     },
 ];

@@ -17,8 +17,6 @@
             href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap"
             rel="stylesheet"
         />
-        <script defer src="../Functions/stock.js"></script>
-        <script defer src="../Functions/main.js"></script>
         <title>Game Over - Home.</title>
     </head>
     <body>
@@ -26,6 +24,17 @@
         <main id="main"></main>
 
         <div id="tarjetas"></div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Precio</th>
+                </tr>
+            </thead>
+            <tbody id="tabla-contenedor"></tbody>
+        </table>
 
         <div id="contacto" class="form__contenedor">
             <h2 class="titulo__form">Dejanos tu comentario</h2>
@@ -124,5 +133,7 @@
             </div>
             <p>EN PROCESO...</p>
         </footer>
+        <script src="../Functions/stock.js"></script>
+        <script src="../Functions/main.js"></script>
     </body>
 </html>
