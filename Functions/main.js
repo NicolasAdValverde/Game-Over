@@ -71,8 +71,10 @@ modal.addEventListener("click", (e) => {
     e.stopPropagation();
 });
 
-// añadir boton "añadido al carrito" cuando se añada con un if
+// funciones a trabajar
 
+// añadir boton "añadido al carrito" cuando se añada con un if
 // que sume la compra
 // funcion quitar elemento del carrito
 // sumar o restar cuentas del carrito
+// restar stock del carrito
