@@ -1,61 +1,7 @@
-const header = document.getElementById("header");
-header.innerHTML = `
-<div class="nav-container">
-<img
-    class="imagen-header"
-    src="../Img/logoGameOver.png"
-    alt="logo game over"
-/>
-
-<nav>
-    <ul>
-        <li>
-            <a class="links" href="#tarjetas">Juegos</a>
-        </li>
-        <li>
-            <a class="links" href="#">Sobre nosotros</a>
-        </li>
-        <li>
-            <a class="links" href="#contacto">contacto</a>
-        </li>
-        <li>
-            <a class="links" href="#carrito">Carrito</a>
-        </li>
-    </ul>
-</nav>
-</div>
-<div class="welcome-container">
-<img
-    class="img-welcome"
-    src="../Img/welcome.png"
-    alt="welcome "
-/>
-</div>
-`;
-
-const main = document.getElementById("main");
-main.innerHTML = `
-<div class="letsplay-container">
-<img
-    class="img-letsplay"
-    src="../Img/letsplaty2.jpg"
-    alt="letsplay"
-/>
-<img
-    src="../Img/joistick.png"
-    alt="piezas"
-    class="img-joistick"
-/>
-<img
-    class="gameOver-img"
-    src="../Img/OrderNow.png"
-    alt="ordernNow"
-/>
-`;
+// ---------- INSERTAMOS LAS CARDS AL DOM DINAMICAMENTE ---------- //
 
 const contenedor = document.getElementById("tarjetas");
 
-// for (const producto of stockProductos)
 stockProductos.forEach((producto) => {
     const div = document.createElement("div");
     div.className = "producto";
@@ -67,13 +13,12 @@ stockProductos.forEach((producto) => {
             <p class="precioProducto">Precio: $${producto.precio}</p>
             <button onclick="agregarAlCarrito(${producto.id})"class="btn btn-primary" >Añadir a Carrito</button>
             `;
-    // eventos
 
     contenedor.appendChild(div);
 });
 
-// funcion pushear elemento al carrito
-// filter o find
+// ---------- AGREGAR AL CARRITO + MOSTRAR COMPRA ---------- //
+// AGREGAR AL CARRITO
 const carrito = [];
 
 function agregarAlCarrito(productoId) {
@@ -86,6 +31,7 @@ function agregarAlCarrito(productoId) {
     mostrarCompra();
 }
 
+// MOSTRAR COMPRA
 const tableBody = document.getElementById("tabla-contenedor");
 
 const mostrarCompra = () => {
@@ -106,9 +52,27 @@ const mostrarCompra = () => {
     });
 };
 
-// añadir boton añadido al carrito cuando se añada con un if
-// evento al boton welcome
-// comentar el codigo para exposicion.
+// ---------- MODAL EN BOTON FORM  ----------- //
+const abrirModal = document.getElementById("modal-abrir");
+const cerrarModal = document.getElementById("modal-cerrar");
+const modalContainer = document.getElementById("modal-container");
+
+const openModal = () => {
+    modalContainer.classList.toggle("modal-active");
+};
+
+abrirModal.addEventListener("click", openModal);
+cerrarModal.addEventListener("click", openModal);
+modalContainer.addEventListener("click", openModal);
+
+const modal = document.getElementById("modal");
+
+modal.addEventListener("click", (e) => {
+    e.stopPropagation();
+});
+
+// añadir boton "añadido al carrito" cuando se añada con un if
+
 // que sume la compra
 // funcion quitar elemento del carrito
 // sumar o restar cuentas del carrito
