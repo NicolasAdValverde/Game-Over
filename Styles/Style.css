@@ -2,44 +2,15 @@
     padding: 0px;
     margin: 0;
     box-sizing: border-box;
-    font-family: "Shadows Into Light", cursive;
+    font-family: "Mate SC", serif;
 }
 body {
     height: 100vh;
     background-image: url(../Img/ladrillovioleta.jpg);
     background-size: cover;
 }
-/* -----INDEX----- */
 
-.grid_index {
-    background-image: url(../Img/GameoverIndex.jpg);
-    width: 100%;
-    height: 100vh;
-    background-size: cover;
-    background-position: center;
-}
-
-/* BOTON INDEX */
-.div-btnIndex {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.btnIndex {
-    font-family: "Tourney", cursive;
-    font-size: 40px;
-    border: 0.5px solid #fff;
-    margin-top: 2rem;
-    background-color: #213ebe79;
-    color: #fff;
-    width: 300px;
-}
-
-.btnIndex:hover {
-    background-color: #7d2883b7;
-    transition: 2s;
-}
+/*  HEADER */
 
 header {
     background-image: url(../Img/izAv5U.gif);
@@ -74,6 +45,8 @@ header {
 
 ul {
     display: flex;
+    justify-content: center;
+    align-items: center;
     gap: 35px;
     margin-right: 100px;
 }
@@ -132,15 +105,11 @@ a {
     height: 400px;
 }
 
-/* -----TARJETAS----- */
+/* -----CARDS----- */
 
-#tarjetas {
+.tarjetas {
     max-width: 1200px;
     margin: 60px auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
 }
 
 .producto {
@@ -148,7 +117,7 @@ a {
     padding: 10px;
     margin-bottom: 20px;
     box-shadow: 2px 6px 3px 3px rgba(255, 255, 255, 0.3);
-    /* color: #fff; */
+
     font-size: 22px;
     text-align: center;
     background-color: #fff;
@@ -157,21 +126,95 @@ a {
 .producto img {
     height: 400px;
     width: 100%;
-    object-fit: cover;
+    object-fit: fill;
 }
 
-.btn {
-    height: 50px;
-    width: 70%;
-    font-size: 20px;
-    background-color: #4d0446;
+.nombreJuego {
+    font-size: 30px;
 }
+
+.precio {
+    font-weight: bold;
+}
+
+.btn-cards {
+    width: 100%;
+    font-size: 40px;
+    background-color: rgb(65, 23, 104);
+    color: #fff;
+}
+
+.btn-cards:hover {
+    background-color: rgb(97, 7, 182);
+    transition: 0.2s;
+}
+
+/* carrito  */
+
+#tittle-carrito {
+    color: #fff;
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
+}
+
 .btn:hover {
     background-color: rgb(65, 23, 104);
     transition: 0.1s;
 }
 
-/* -----formulario----- */
+.btn-accion-sumar {
+    color: #fff;
+    width: 40px;
+    margin: 3px;
+    font-size: 20px;
+    background-color: rgb(2, 131, 56);
+    border: none;
+}
+
+.btn-accion-sumar:hover {
+    background-color: rgb(4, 180, 78);
+}
+
+.btn-accion-restar {
+    color: #fff;
+    width: 40px;
+    margin: 3px;
+    font-size: 20px;
+    background-color: rgb(255, 0, 0);
+    border: none;
+}
+
+.btn-carrito {
+    color: #fff;
+    margin: 3px;
+    font-size: 20px;
+}
+
+.btn-carrito2 {
+    color: #fff;
+    margin: 3px;
+    font-size: 20px;
+    background-color: rgb(2, 131, 56);
+    border: none;
+}
+
+.btn-carrito2:hover {
+    background-color: rgb(2, 56, 24);
+}
+
+/* formulario */
+
+.btn-enviar {
+    height: 50px;
+    width: 200px;
+    font-size: 30px;
+    background-color: #000000;
+}
+.btn-enviar:hover {
+    background-color: rgb(46, 2, 87);
+    transition: 0.2s;
+}
 
 .titulo__form {
     color: #fff;
@@ -206,6 +249,7 @@ a {
 .btn-modal {
     color: #fff;
     margin-left: 50px;
+    background-color: rgb(65, 23, 104);
 }
 /* ------table------- */
 
@@ -216,7 +260,6 @@ a {
 }
 
 .table {
-    width: 500px;
     margin: 20px auto;
     background-color: rgb(3, 3, 3);
 }
@@ -260,39 +303,4 @@ td {
 .modal-active {
     opacity: 1;
     visibility: visible;
-}
-
-/* ----- footer ----- */
-
-footer {
-    background-color: rgb(252, 249, 249);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100px;
-}
-
-.div-footer {
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.footer__img {
-    width: 250px;
-}
-
-.ul__container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.imagen__li {
-    height: 50px;
-}
-
-.imagen__li:hover {
-    background-color: blueviolet;
 }

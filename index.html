@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Bienvenido a Game Over</title>
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+            integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+            crossorigin="anonymous"
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Mate+SC&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="/Styles/Style.css" />
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+       
+    </head>
+    <body>
+        <div class="container-fluid">
+            <!-- header -->
+            <header>
+                <div class="nav-container">
+                    <img
+                        class="imagen-header"
+                        src="../Img/logoGameOver.png"
+                        alt="logo game over"
+                    />
+                    <!-- navegacion -->
+                    <nav>
+                        <ul>
+                            <li>
+                                <a class="links" href="#contenedor-productos">Juegos</a>
+                            </li>
+                           
+                            <li>
+                                <a class="links" href="#contacto">contacto</a>
+                            </li>
+                            <li>
+                                <a class="links" href="#tittle-carrito">Carrito</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="welcome-container">
+                    <img
+                        class="img-welcome"
+                        src="../Img/welcome.png"
+                        alt="welcome "
+                    />
+                </div>
+            </header>
+            <!-- MAIN -->
+            <main>
+                <div class="letsplay-container">
+                    <img
+                        class="img-letsplay"
+                        src="../Img/letsplaty2.jpg"
+                        alt="letsplay"
+                    />
+                    <img
+                        src="../Img/joistick.png"
+                        alt="piezas"
+                        class="img-joistick"
+                    />
+                    <img
+                        class="gameOver-img"
+                        src="../Img/OrderNow.png"
+                        <!--
+                        alt="ordernNow"
+                    />
+                </div>
+                <!-- TABLA CARRITO DE COMPRAS -->
+                    <div class="row" id="contenedor-productos"></div>
+                    <div class="my-5">
+                        <h4 id="tittle-carrito" >Carrito de compras</h4>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Item</th>
+                                    <th scope="col">Cantidad</th>
+                                    <th scope="col">Acción</th>
+                                    <th scope="col">Total</th>
+                                </tr>
+                            </thead>
+                            <!-- TBODY DONDE SE MOSTRARAN LAS CARDS -->
+                            <tbody id="items"></tbody>
+                            <!-- FOOTER CARRITO DE COMPRAS -->
+                            <tfoot>
+                                <tr id="footer-carrito">
+                                    <th scope="row" colspan="5">
+                                        Carrito vacío
+                                    </th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </main>
+            <!-- FORMULARIO DE CONTACTO -->
+            <div id="contacto" class="form__contenedor">
+                <h2 class="titulo__form">Dejanos tu comentario.</h2>
+                <div class="row g-3">
+                    <div class="col">
+                        <input
+                            type="text"
+                            class="form-control"
+                            placeholder="Nombre"
+                            aria-label="First name"
+                            required
+                        />
+                    </div>
+                    <div class="col">
+                        <input
+                            type="text"
+                            class="form-control"
+                            placeholder="Apellido"
+                            aria-label="Last name"
+                            required
+                        />
+                    </div>
+                </div>
+                <div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label"
+                            ></label
+                        >
+                        <input
+                            type="email"
+                            class="form-control"
+                            id="exampleFormControlInput1"
+                            placeholder="mail@ejemplo.com"
+                            required
+                        />
+                    </div>
+                    <div class="mb-3">
+                        <label
+                            for="exampleFormControlTextarea1"
+                            class="form-label"
+                            ></label
+                        >
+                        <textarea
+                            class="form-control"
+                            id="exampleFormControlTextarea1"
+                            rows="3"
+                            placeholder="Dejanos tu comentario"
+                            required
+                        ></textarea>
+                    </div>
+                </div>
+                <button type="submit" id="modal-abrir" class="btn-enviar btn-success my-3 btn-form">
+                    Enviar
+                </button>
+                <!-- MODAL DE RESPUESTA AL FORM -->
+                <div id="modal-container" class="modal-container">
+                    <div id="modal">
+                        <h3 class="titulo__modal-form">
+                            ¡Muchas gracias por tu mensaje!
+                        </h3>
+                        <hr />
+                        <p class="mensaje__modal-form">
+                            Leeremos tu consulta y en breve te contestaremos.
+                        </p>
+                        <div id="modal-content"></div>
+                        <button
+                            id="modal-cerrar"
+                            class="btn btn-outline-danger btn-modal"
+                        >
+                            Cerrar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+      
+        <!-- TEMPLATES -->
+        <template id="template-footer">
+            <th scope="row" colspan="2">Total productos</th>
+            <td></td>
+            <td>
+                <button class="btn-carrito btn-danger btn-sm " id="vaciar-carrito">
+                    vaciar
+                </button>
+                <button class="btn-carrito2 btn-sm " id="continuar-compra">
+                    comprar
+                </button>
+            </td>
+            <td class="font-weight-bold">$ <span></span></td>
+        </template>
+
+        <template id="template-carrito" class="carrito">
+            <tr>
+                <th scope="row">id</th>
+                <td></td>
+                <td></td>
+                <td>
+                    <button class="btn-accion-sumar btn-info btn-sm">+</button>
+                    <button class="btn-accion-restar btn-danger btn-sm">-</button>
+                </td>
+                <td>$ <span></span></td>
+            </tr>
+        </template>
+
+        <template id="template-productos">
+            <div class="col-12 col-md-4 mb-3 producto tarjetas">
+                <div class="card">
+                    <img src="" class="card-img-top" alt="..." />
+                    <div class="card-body">
+                        <h5 class="card-title nombreJuego"></h5>
+                        <p class="card-text">$<span class="precio"></span></p>
+                        <button id="boton-alert" class="btn-cards">Comprar</button>
+                    </div>
+                </div>
+            </div>
+        </template>
+        <!-- SCRIPTS JS -->
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="/Functions/app.js"></script>
+    </body>
+</html>
