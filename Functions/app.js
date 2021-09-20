@@ -1,212 +1,195 @@
-document.addEventListener("DOMContentLoaded", () => {
-    fetchData();
-});
-//------ TRAEMOS DATOS DE UN JSON LOCAL
-const fetchData = async () => {
-    const res = await fetch("/Functions/stock.json");
-    const data = await res.json();
-    // console.log(data)
-    pintarProductos(data);
-    detectarBotones(data);
+let stockProductos = [];
+
+// fetch('./stock.json')
+//     .then(res => res.json())
+//     .then(data => {
+//             stockProductos = data
+//             mostrarProductos(stockProductos)
+//         })
+
+// async function obtenerProductos() {}
+
+const obtenerProductos = async () => {
+    const resp = await fetch("functions/stock.json");
+    const data = await resp.json();
+
+    stockProductos = data;
+    mostrarProductos(stockProductos);
 };
 
-//-----EVENTO IMAGEN HEADER CON JQUERY (PARA 3RA ENTREGA FINAL)
-$(".img-welcome").hover(() => {
-    Swal.fire({
-        title: "<strong>Bienvenido a GAME OVER</strong>",
-        icon: "info",
-        html: `
-        Recorda que para comprar debes ser mayor de 18 años`,
-        showCloseButton: true,
-        focusConfirm: false,
-        confirmButtonText: '<i class="fa fa-thumbs-up"></i> Entendido',
-        confirmButtonAriaLabel: "Thumbs up, great!",
-    });
-});
+obtenerProductos();
 
-//-----MOSTRAR PRODUCTOS EN EL DOM
-//VARIABLE CAPTURANDO ID
-const contendorProductos = document.querySelector("#contenedor-productos");
-//FUNCION PARA TOMAR VALOR DE LOS TEMPLATE
-const pintarProductos = (data) => {
-    const template = document.querySelector("#template-productos").content;
-    const fragment = document.createDocumentFragment();
+const contenedorProductos = document.getElementById("contenedor-productos");
+const contenedorCarrito = document.getElementById("carrito-contenedor");
+const selectFiltro = document.getElementById("talles");
+const selectPrecios = document.getElementById("precios");
 
-    data.forEach((producto) => {
-        template.querySelector("img").setAttribute("src", producto.img);
-        template.querySelector("h5").textContent = producto.nombre;
-        template.querySelector("p span").textContent = producto.precio;
-        template.querySelector("button").dataset.id = producto.id;
-        const clone = template.cloneNode(true);
-        fragment.appendChild(clone);
-    });
-    contendorProductos.appendChild(fragment);
-};
+const contadorCarrito = document.getElementById("contadorCarrito");
+const precioTotal = document.getElementById("precioTotal");
 
-//CARRITO = OBJETO VACIO
-let carrito = {};
+const carrito = [];
 
-//DETECTAMOS EL BOTON DE LAS CARDS
-const detectarBotones = (data) => {
-    const botones = document.querySelectorAll(".card button");
-    //RECORREMOS Y CLONAMOS EL CARRITO
-    botones.forEach((btn) => {
-        btn.addEventListener("click", () => {
-            // console.log(btn.dataset.id)
-            const producto = data.find(
-                (item) => item.id === parseInt(btn.dataset.id)
-            );
-            producto.cantidad = 1;
-            if (carrito.hasOwnProperty(producto.id)) {
-                producto.cantidad = carrito[producto.id].cantidad + 1;
-            }
-            carrito[producto.id] = { ...producto };
+function mostrarProductos(array) {
+    contenedorProductos.innerHTML = "";
 
-            pintarCarrito();
-        });
-    });
-    //EVENTO "AGREGADO AL CARRITO"
-    botones.forEach((btn) => {
-        btn.addEventListener("click", () => {
-            Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "Agregado al carrito",
-                showConfirmButton: false,
-                timer: 1000,
-            });
-        });
-    });
-};
-
-//VARIABLE
-const items = document.querySelector("#items");
-//FUNCION
-const pintarCarrito = () => {
-    //pendiente innerHTML
-    items.innerHTML = "";
-
-    const template = document.querySelector("#template-carrito").content;
-    const fragment = document.createDocumentFragment();
-
-    Object.values(carrito).forEach((producto) => {
-        template.querySelector("th").textContent = producto.id;
-        template.querySelectorAll("td")[0].textContent = producto.nombre;
-        template.querySelectorAll("td")[1].textContent = producto.cantidad;
-        template.querySelector("span").textContent =
-            producto.precio * producto.cantidad;
-
-        //BOTONES
-        template.querySelector(".btn-info").dataset.id = producto.id;
-        template.querySelector(".btn-danger").dataset.id = producto.id;
-        //CLONAR EL TEMPLATE + APPEND
-        const clone = template.cloneNode(true);
-        fragment.appendChild(clone);
-    });
-    //APPEND
-    items.appendChild(fragment);
-
-    pintarFooter();
-    accionBotones();
-};
-
-//----- PINTAR FOOTER
-//VARIABLE
-const footer = document.querySelector("#footer-carrito");
-//FUNCION
-const pintarFooter = () => {
-    footer.innerHTML = "";
-
-    if (Object.keys(carrito).length === 0) {
-        footer.innerHTML = `
-        <th scope="row" colspan="5">Carrito vacío</th>
+    array.forEach((producto) => {
+        const div = document.createElement("div");
+        div.classList.add("producto");
+        // div.id.add("tarjetas");
+        div.innerHTML = `
+                    <img src=${producto.img} alt="">
+                    <h3>${producto.nombre}</h3>
+                    <p>${producto.categoria}</p>
+                    <p class="precioProducto">Precio: $${producto.precio}</p>
+                    <button onclick=agregarAlCarrito(${producto.id}) class="boton-agregar">Agregar <i class="fas fa-shopping-cart"></i></button>
         `;
-        return;
+
+        contenedorProductos.appendChild(div);
+    });
+}
+
+function agregarAlCarrito(itemId) {
+    let itemEnCarrito = carrito.find((el) => el.id == itemId);
+
+    if (itemEnCarrito) {
+        itemEnCarrito.cantidad += 1;
+    } else {
+        let { id, nombre, precio } = stockProductos.find(
+            (el) => el.id == itemId
+        );
+        carrito.push({ id: id, nombre: nombre, precio: precio, cantidad: 1 });
     }
 
-    const template = document.querySelector("#template-footer").content;
-    const fragment = document.createDocumentFragment();
+    localStorage.setItem("carrito", JSON.stringify(carrito));
 
-    //SUMAR CANTIDAD Y TOTALES
-    const nCantidad = Object.values(carrito).reduce(
-        (acc, { cantidad }) => acc + cantidad,
-        0
-    );
-    const nPrecio = Object.values(carrito).reduce(
-        (acc, { cantidad, precio }) => acc + cantidad * precio,
-        0
-    );
+    console.log(carrito);
 
-    //APPENDS
-    template.querySelectorAll("td")[0].textContent = nCantidad;
-    template.querySelector("span").textContent = nPrecio;
+    actualizarCarrito();
+}
 
-    const clone = template.cloneNode(true);
-    fragment.appendChild(clone);
-    footer.appendChild(fragment);
+const contenedorModal = document.getElementsByClassName("modal-contenedor")[0];
+const botonAbrir = document.getElementById("boton-carrito");
+const botonCerrar = document.getElementById("carritoCerrar");
+const modalCarrito = document.getElementsByClassName("modal-carrito")[0];
 
-    //EVENTO
-    const boton = document.querySelector("#vaciar-carrito");
-    boton.addEventListener("click", () => {
-        carrito = {};
-        pintarCarrito();
-    });
-};
-
-//----- ACCIONES DE LOS BOTONES FOOTER DEL CARRIO
-const accionBotones = () => {
-    const botonesAgregar = document.querySelectorAll("#items .btn-info");
-    const botonesEliminar = document.querySelectorAll("#items .btn-danger");
-
-    botonesAgregar.forEach((btn) => {
-        btn.addEventListener("click", () => {
-            // console.log(btn.dataset.id)
-            const producto = carrito[btn.dataset.id];
-            producto.cantidad++;
-            carrito[btn.dataset.id] = { ...producto };
-            pintarCarrito();
-        });
-    });
-    botonesEliminar.forEach((btn) => {
-        btn.addEventListener("click", () => {
-            // console.log('eliminando...')
-            const producto = carrito[btn.dataset.id];
-            producto.cantidad--;
-            if (producto.cantidad === 0) {
-                delete carrito[btn.dataset.id];
-            } else {
-                carrito[btn.dataset.id] = { ...producto };
-            }
-            pintarCarrito();
-        });
-    });
-};
-
-//----- FORMULARIO DE CONTACTO  //
-//VARIABLES
-const abrirModal = document.getElementById("modal-abrir");
-const cerrarModal = document.getElementById("modal-cerrar");
-const modalContainer = document.getElementById("modal-container");
-const modal = document.getElementById("modal");
-const openModal = () => {
-    modalContainer.classList.toggle("modal-active");
-};
-const form = document.getElementById("form");
-const username = document.getElementById("username");
-const email = document.getElementById("email");
-const textArea = document.getElementById("textarea");
-const submit = document.getElementById("submit");
-
-//EVENTOS
-abrirModal.addEventListener("click", openModal);
-cerrarModal.addEventListener("click", openModal);
-modalContainer.addEventListener("click", openModal);
-modal.addEventListener("click", (e) => {
-    e.stopPropagation();
+botonAbrir.addEventListener("click", () => {
+    contenedorModal.classList.toggle("modal-active");
+});
+botonCerrar.addEventListener("click", () => {
+    contenedorModal.classList.toggle("modal-active");
+});
+contenedorModal.addEventListener("click", () => {
+    botonCerrar.click();
+});
+modalCarrito.addEventListener("click", (event) => {
+    event.stopPropagation();
 });
 
-$("#modal-abrir").click((event) => {
-    event.preventDefault();
-    console.log("Boton clickeado");
-    $("#modal-abrir").trigger("submit");
+function eliminarProducto(id) {
+    let productoAEliminar = carrito.find((el) => el.id == id);
+
+    productoAEliminar.cantidad--;
+
+    if (productoAEliminar.cantidad == 0) {
+        let indice = carrito.indexOf(productoAEliminar);
+        carrito.splice(indice, 1);
+    }
+
+    console.log(carrito);
+    actualizarCarrito();
+}
+
+function actualizarCarrito() {
+    contenedorCarrito.innerHTML = "";
+
+    carrito.forEach((producto) => {
+        const div = document.createElement("div");
+        div.classList.add("productoEnCarrito");
+        div.innerHTML = `
+                        <p>${producto.nombre}</p>
+                        <p>Precio: $${producto.precio * producto.cantidad}</p>
+                        <p>Cantidad: ${producto.cantidad}</p>
+                        <button onclick=eliminarProducto(${
+                            producto.id
+                        }) class="boton-eliminar"><i class="fas fa-trash-alt"></i></button>
+                    `;
+
+        contenedorCarrito.appendChild(div);
+    });
+
+    contadorCarrito.innerText = carrito.length;
+    precioTotal.innerText = carrito.reduce(
+        (acc, el) => acc + el.precio * el.cantidad,
+        0
+    );
+}
+
+function filtrar() {
+    let valorFiltroTalles = selectFiltro.value;
+    let valorFiltroPrecios = selectPrecios.value;
+
+    let arrayFiltrado = [];
+
+    if (valorFiltroTalles == "all") {
+        arrayFiltrado = stockProductos;
+    } else {
+        arrayFiltrado = stockProductos.filter(
+            (el) => el.categoria == selectFiltro.value
+        );
+    }
+
+    if (valorFiltroPrecios == 1) {
+        arrayFiltrado = arrayFiltrado.filter((el) => el.precio <= 5000);
+    } else if (valorFiltroPrecios == 2) {
+        arrayFiltrado = arrayFiltrado.filter((el) => el.precio >= 5000);
+    }
+
+    mostrarProductos(arrayFiltrado);
+}
+
+selectFiltro.addEventListener("change", () => {
+    filtrar();
 });
+selectPrecios.addEventListener("change", () => {
+    filtrar();
+});
+
+// ========= API MERCADO PAGO =============
+
+const finalizarCompra = async () => {
+    const productosMP = carrito.map((prod) => {
+        return {
+            title: prod.nombre,
+            description: "",
+            picture_url: "",
+            category_id: prod.id,
+            quantity: prod.cantidad,
+            currency_id: "ARS",
+            unit_price: prod.precio,
+        };
+    });
+
+    const resp = await fetch(
+        "https://api.mercadopago.com/checkout/preferences",
+        {
+            method: "POST",
+            headers: {
+                Authorization:
+                    "Bearer TEST-530625010370198-052019-70dec8c67253a7ded8355f1a098731e3-418556460",
+            },
+            body: JSON.stringify({
+                items: productosMP,
+                back_urls: {
+                    success:
+                        "http://127.0.0.1:5500/Clase15/Ajax2/Ej2/index.html",
+                    failure:
+                        "http://127.0.0.1:5500/Clase15/Ajax2/Ej2/index.html",
+                },
+            }),
+        }
+    );
+
+    const data = await resp.json();
+
+    window.location.replace(data.init_point);
+};

@@ -10,15 +10,21 @@
             integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
             crossorigin="anonymous"
         />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <script
+            src="https://kit.fontawesome.com/df59baf6b8.js"
+            crossorigin="anonymous"
+        ></script>
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
             href="https://fonts.googleapis.com/css2?family=Mate+SC&display=swap"
             rel="stylesheet"
         />
         <link rel="stylesheet" href="/Styles/Style.css" />
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-       
+        <script
+            src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"
+        ></script>
     </head>
     <body>
         <div class="container-fluid">
@@ -34,14 +40,19 @@
                     <nav>
                         <ul>
                             <li>
-                                <a class="links" href="#contenedor-productos">Juegos</a>
+                                <a class="links" href="#contenedor-productos"
+                                    >Juegos</a
+                                >
                             </li>
-                           
+
                             <li>
                                 <a class="links" href="#contacto">contacto</a>
                             </li>
                             <li>
-                                <a class="links" href="#tittle-carrito">Carrito</a>
+                                <button id="boton-carrito">
+                                    <i class="fas fa-shopping-cart"></i
+                                    ><span id="contadorCarrito">0</span>
+                                </button>
                             </li>
                         </ul>
                     </nav>
@@ -54,7 +65,6 @@
                     />
                 </div>
             </header>
-            <!-- MAIN -->
             <main>
                 <div class="letsplay-container">
                     <img
@@ -74,34 +84,52 @@
                         alt="ordernNow"
                     />
                 </div>
-                <!-- TABLA CARRITO DE COMPRAS -->
-                    <div class="row" id="contenedor-productos"></div>
-                    <div class="my-5">
-                        <h4 id="tittle-carrito" >Carrito de compras</h4>
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Item</th>
-                                    <th scope="col">Cantidad</th>
-                                    <th scope="col">Acción</th>
-                                    <th scope="col">Total</th>
-                                </tr>
-                            </thead>
-                            <!-- TBODY DONDE SE MOSTRARAN LAS CARDS -->
-                            <tbody id="items"></tbody>
-                            <!-- FOOTER CARRITO DE COMPRAS -->
-                            <tfoot>
-                                <tr id="footer-carrito">
-                                    <th scope="row" colspan="5">
-                                        Carrito vacío
-                                    </th>
-                                </tr>
-                            </tfoot>
-                        </table>
-                    </div>
+                <select id="talles">
+                    <option value="all">Todos</option>
+                    <option value="Deportes">Deportes</option>
+                    <option value="Terror">Terror</option>
+                    <option value="Acción">Acción</option>
+                    <option value="Aventura">Aventura</option>
+                </select>
+
+                <select id="precios">
+                    <option value="0">Todos</option>
+                    <option value="1">0 - 5000</option>
+                    <option value="2">+5000</option>
+                </select>
+
+                <div id="contenedor-productos" class="tarjetas">
+                    <!-- <div class="producto">
+                    <img src="/img/buzo.jpg" alt="">
+                    <h3>Buzo 1</h3>
+                    <p>Un buzo que re va con vos</p>
+                    <p>Talle: L</p>
+                    <p class="precioProducto">Precio: $1200</p>
+                    <button class="boton-agregar">Agregar <i class="fas fa-shopping-cart"></i></button>
+                </div> -->
                 </div>
             </main>
+            <div class="modal-contenedor">
+                <div class="modal-carrito">
+                    <h3>Carrito</h3>
+                    <button id="carritoCerrar">
+                        <i class="fas fa-times-circle"></i>
+                    </button>
+                    <div id="carrito-contenedor">
+                        <!-- <div class="productoEnCarrito">
+                            <p>Buzo 1</p>
+                            <p>Precio: $1200</p>
+                            <button class="boton-eliminar"><i class="fas fa-trash-alt"></i></button>
+                        </div> -->
+                    </div>
+                    <p class="precioProducto">
+                        Precio total: $<span id="precioTotal"></span>
+                    </p>
+                    <button onclick="finalizarCompra()">
+                        FINALIZAR COMPRA
+                    </button>
+                </div>
+            </div>
             <!-- FORMULARIO DE CONTACTO -->
             <div id="contacto" class="form__contenedor">
                 <h2 class="titulo__form">Dejanos tu comentario.</h2>
@@ -127,9 +155,10 @@
                 </div>
                 <div>
                     <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label"
-                            ></label
-                        >
+                        <label
+                            for="exampleFormControlInput1"
+                            class="form-label"
+                        ></label>
                         <input
                             type="email"
                             class="form-control"
@@ -142,8 +171,7 @@
                         <label
                             for="exampleFormControlTextarea1"
                             class="form-label"
-                            ></label
-                        >
+                        ></label>
                         <textarea
                             class="form-control"
                             id="exampleFormControlTextarea1"
@@ -153,7 +181,11 @@
                         ></textarea>
                     </div>
                 </div>
-                <button type="submit" id="modal-abrir" class="btn-enviar btn-success my-3 btn-form">
+                <button
+                    type="submit"
+                    id="modal-abrir"
+                    class="btn-enviar btn-success my-3 btn-form"
+                >
                     Enviar
                 </button>
                 <!-- MODAL DE RESPUESTA AL FORM -->
@@ -177,47 +209,7 @@
                 </div>
             </div>
         </div>
-      
-        <!-- TEMPLATES -->
-        <template id="template-footer">
-            <th scope="row" colspan="2">Total productos</th>
-            <td></td>
-            <td>
-                <button class="btn-carrito btn-danger btn-sm " id="vaciar-carrito">
-                    vaciar
-                </button>
-                <button class="btn-carrito2 btn-sm " id="continuar-compra">
-                    comprar
-                </button>
-            </td>
-            <td class="font-weight-bold">$ <span></span></td>
-        </template>
 
-        <template id="template-carrito" class="carrito">
-            <tr>
-                <th scope="row">id</th>
-                <td></td>
-                <td></td>
-                <td>
-                    <button class="btn-accion-sumar btn-info btn-sm">+</button>
-                    <button class="btn-accion-restar btn-danger btn-sm">-</button>
-                </td>
-                <td>$ <span></span></td>
-            </tr>
-        </template>
-
-        <template id="template-productos">
-            <div class="col-12 col-md-4 mb-3 producto tarjetas">
-                <div class="card">
-                    <img src="" class="card-img-top" alt="..." />
-                    <div class="card-body">
-                        <h5 class="card-title nombreJuego"></h5>
-                        <p class="card-text">$<span class="precio"></span></p>
-                        <button id="boton-alert" class="btn-cards">Comprar</button>
-                    </div>
-                </div>
-            </div>
-        </template>
         <!-- SCRIPTS JS -->
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="/Functions/app.js"></script>

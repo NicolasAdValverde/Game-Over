@@ -106,7 +106,13 @@ a {
 }
 
 /* -----CARDS----- */
-
+#contenedor-productos {
+    max-width: 1200px;
+    margin: 60px auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
 .tarjetas {
     max-width: 1200px;
     margin: 60px auto;
@@ -151,56 +157,59 @@ a {
 
 /* carrito  */
 
-#tittle-carrito {
-    color: #fff;
-    font-size: 50px;
-    font-weight: bold;
-    text-align: center;
+.modal-contenedor {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s;
+    opacity: 0;
+    visibility: hidden;
 }
 
-.btn:hover {
-    background-color: rgb(65, 23, 104);
-    transition: 0.1s;
+.modal-active {
+    opacity: 1;
+    visibility: visible;
 }
 
-.btn-accion-sumar {
-    color: #fff;
-    width: 40px;
-    margin: 3px;
+.modal-carrito {
+    position: relative;
+    background-color: white;
+    min-width: 500px;
+    padding: 20px;
+    margin-top: -100%;
+    transition: all 0.5s;
+}
+
+.modal-active .modal-carrito {
+    margin-top: 0;
+}
+
+.modal-carrito h3 {
+    color: royalblue;
+    padding-bottom: 5px;
+}
+.modal-carrito #carritoCerrar {
+    position: absolute;
+    top: 15px;
+    right: 15px;
     font-size: 20px;
-    background-color: rgb(2, 131, 56);
+    color: royalblue;
     border: none;
+    background-color: white;
 }
-
-.btn-accion-sumar:hover {
-    background-color: rgb(4, 180, 78);
+.modal-carrito #carritoCerrar:hover {
+    cursor: pointer;
 }
-
-.btn-accion-restar {
-    color: #fff;
-    width: 40px;
-    margin: 3px;
-    font-size: 20px;
-    background-color: rgb(255, 0, 0);
-    border: none;
+.modal-carrito #carritoCerrar:focus {
+    outline: none;
 }
-
-.btn-carrito {
-    color: #fff;
-    margin: 3px;
-    font-size: 20px;
-}
-
-.btn-carrito2 {
-    color: #fff;
-    margin: 3px;
-    font-size: 20px;
-    background-color: rgb(2, 131, 56);
-    border: none;
-}
-
-.btn-carrito2:hover {
-    background-color: rgb(2, 56, 24);
+.modal-carrito .precioProducto {
+    padding-top: 10px;
 }
 
 /* formulario */
@@ -251,32 +260,8 @@ a {
     margin-left: 50px;
     background-color: rgb(65, 23, 104);
 }
-/* ------table------- */
 
-.titulo-carrito {
-    color: cornsilk;
-    text-align: center;
-    font-size: 50px;
-}
-
-.table {
-    margin: 20px auto;
-    background-color: rgb(3, 3, 3);
-}
-
-th {
-    color: rgb(255, 255, 255);
-    font-size: 25px;
-    text-align: center;
-}
-
-td {
-    color: cornsilk;
-    font-size: 20px;
-    text-align: center;
-}
-
-/* -----MODAL ----- */
+/* -----MODAL FORMULARIO ----- */
 
 .modal-container {
     width: 100%;
