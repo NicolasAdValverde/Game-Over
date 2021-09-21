@@ -84,8 +84,10 @@
                         alt="ordernNow"
                     />
                 </div>
-                <select id="talles">
-                    <option value="all">Todos</option>
+
+                <h3 class="h3-filtrar">Filtrar por:</h3>
+                <select id="categoria">
+                    <option value="all">Categoria</option>
                     <option value="Deportes">Deportes</option>
                     <option value="Terror">Terror</option>
                     <option value="Acción">Acción</option>
@@ -93,7 +95,7 @@
                 </select>
 
                 <select id="precios">
-                    <option value="0">Todos</option>
+                    <option value="0">Precio</option>
                     <option value="1">0 - 5000</option>
                     <option value="2">+5000</option>
                 </select>
@@ -125,7 +127,10 @@
                     <p class="precioProducto">
                         Precio total: $<span id="precioTotal"></span>
                     </p>
-                    <button onclick="finalizarCompra()">
+                    <button
+                        class="boton-finalizarCompra"
+                        onclick="finalizarCompra()"
+                    >
                         FINALIZAR COMPRA
                     </button>
                 </div>

@@ -21,7 +21,7 @@ obtenerProductos();
 
 const contenedorProductos = document.getElementById("contenedor-productos");
 const contenedorCarrito = document.getElementById("carrito-contenedor");
-const selectFiltro = document.getElementById("talles");
+const selectFiltro = document.getElementById("categoria");
 const selectPrecios = document.getElementById("precios");
 
 const contadorCarrito = document.getElementById("contadorCarrito");
@@ -106,9 +106,14 @@ function actualizarCarrito() {
         const div = document.createElement("div");
         div.classList.add("productoEnCarrito");
         div.innerHTML = `
-                        <p>${producto.nombre}</p>
-                        <p>Precio: $${producto.precio * producto.cantidad}</p>
-                        <p>Cantidad: ${producto.cantidad}</p>
+                        <img class="imagenProducto-Modal" ${producto.img}.src />
+                        <p class="colorProducto-modal" >${producto.nombre}</p>
+                        <p class="colorProducto-modal">Precio: $${
+                            producto.precio * producto.cantidad
+                        }</p>
+                        <p class="colorProducto-modal">Cantidad: ${
+                            producto.cantidad
+                        }</p>
                         <button onclick=eliminarProducto(${
                             producto.id
                         }) class="boton-eliminar"><i class="fas fa-trash-alt"></i></button>

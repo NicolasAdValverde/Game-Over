@@ -52,14 +52,32 @@ ul {
 }
 
 a {
-    text-decoration: none;
     color: #fff;
     font-size: 35px;
 }
 
 .links:hover {
-    background-color: black;
     transition: 2s;
+    color: #fff;
+}
+
+#boton-carrito {
+    border: none;
+    color: rgb(113, 7, 128);
+    background-color: rgba(0, 255, 255, 0);
+    font-size: 40px;
+    border-radius: 50%;
+    padding: 20px 0;
+    margin-top: 10px;
+    transition: all 0.3s;
+}
+
+#boton-carrito:hover {
+    cursor: pointer;
+    color: white;
+}
+#boton-carrito:focus {
+    outline: none;
 }
 
 .welcome-container {
@@ -103,6 +121,10 @@ a {
 
 .gameOver-img {
     height: 400px;
+}
+
+.h3-filtrar {
+    color: azure;
 }
 
 /* -----CARDS----- */
@@ -178,7 +200,7 @@ a {
 
 .modal-carrito {
     position: relative;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.514);
     min-width: 500px;
     padding: 20px;
     margin-top: -100%;
@@ -190,7 +212,7 @@ a {
 }
 
 .modal-carrito h3 {
-    color: royalblue;
+    color: rgb(0, 0, 0);
     padding-bottom: 5px;
 }
 .modal-carrito #carritoCerrar {
@@ -198,9 +220,9 @@ a {
     top: 15px;
     right: 15px;
     font-size: 20px;
-    color: royalblue;
+    color: rgb(0, 0, 0);
     border: none;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.425);
 }
 .modal-carrito #carritoCerrar:hover {
     cursor: pointer;
@@ -210,6 +232,43 @@ a {
 }
 .modal-carrito .precioProducto {
     padding-top: 10px;
+}
+.productoEnCarrito {
+    border-left: 5px solid lightblue;
+    border-bottom-left-radius: 3px;
+    border-top-left-radius: 3px;
+    margin: 5px 0;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: space-between;
+    height: 100px;
+    align-items: center;
+}
+.productoEnCarrito:hover {
+    border-left: 5px solid rgb(91, 4, 99);
+}
+.imagenProducto-Modal {
+    width: 20%;
+    height: 50px;
+}
+
+.colorProducto-modal {
+    color: rgb(0, 0, 0);
+}
+.precioProducto {
+    color: #000;
+}
+
+.boton-finalizarCompra {
+    color: #fff;
+    background-color: red;
+    border: none;
+    padding: 5px;
+}
+
+.boton-eliminar {
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
 }
 
 /* formulario */
