@@ -1,19 +1,28 @@
+const bienvenida = document.getElementById("condiciones");
+bienvenida.addEventListener("click", () => {
+    Swal.fire({
+        title: `Bienvenido a Game Over
+        Te ofrecemos la mejor calidad y variedad en juegos
+        ¡A jugar!`,
+        width: 600,
+        padding: "3em",
+        background: "#fff url(/images/trees.png)",
+        backdrop: `
+          rgba(0,0,123,0.4)
+          url("https://c.tenor.com/TtjXGU2TZtUAAAAi/gamer-girl-sexy.gif")
+          left top
+          no-repeat
+        `,
+    });
+});
+
+// DECLARAMOS UN ARRAY VACIO Y OBTENEMOS LOS PRODUCTOS DE UN JSON LOCAL
 let stockProductos = [];
-
-// fetch('./stock.json')
-//     .then(res => res.json())
-//     .then(data => {
-//             stockProductos = data
-//             mostrarProductos(stockProductos)
-//         })
-
-// async function obtenerProductos() {}
-
 const obtenerProductos = async () => {
     const resp = await fetch("functions/stock.json");
     const data = await resp.json();
-
     stockProductos = data;
+    //LLAMAMOS A LA FUNCION MOSTRAR PRODUCTOS
     mostrarProductos(stockProductos);
 };
 
@@ -23,33 +32,38 @@ const contenedorProductos = document.getElementById("contenedor-productos");
 const contenedorCarrito = document.getElementById("carrito-contenedor");
 const selectFiltro = document.getElementById("categoria");
 const selectPrecios = document.getElementById("precios");
-
 const contadorCarrito = document.getElementById("contadorCarrito");
 const precioTotal = document.getElementById("precioTotal");
-
 const carrito = [];
 
+//FUNCION MOSTRAR PRODUCTOS
 function mostrarProductos(array) {
     contenedorProductos.innerHTML = "";
 
     array.forEach((producto) => {
         const div = document.createElement("div");
         div.classList.add("producto");
-        // div.id.add("tarjetas");
         div.innerHTML = `
-                    <img src=${producto.img} alt="">
-                    <h3>${producto.nombre}</h3>
+                    <img class="imagen-cards" src=${producto.img} alt="">
+                    <h3 class="nombreJuego">${producto.nombre}</h3>
                     <p>${producto.categoria}</p>
-                    <p class="precioProducto">Precio: $${producto.precio}</p>
-                    <button onclick=agregarAlCarrito(${producto.id}) class="boton-agregar">Agregar <i class="fas fa-shopping-cart"></i></button>
+                    <p class="precio">Precio: $${producto.precio}</p>
+                    <button onclick=agregarAlCarrito(${producto.id}) class="btn-cards">Agregar al carrito</button>
         `;
-
         contenedorProductos.appendChild(div);
     });
 }
 
+//FUNCION AGREGAR AL CARRITO
 function agregarAlCarrito(itemId) {
     let itemEnCarrito = carrito.find((el) => el.id == itemId);
+    Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: `Agregado al carrito`,
+        showConfirmButton: false,
+        timer: 1200,
+    });
 
     if (itemEnCarrito) {
         itemEnCarrito.cantidad += 1;
@@ -59,11 +73,9 @@ function agregarAlCarrito(itemId) {
         );
         carrito.push({ id: id, nombre: nombre, precio: precio, cantidad: 1 });
     }
-
+    //GUARDAMOS EL CARRITO EN EL LS
     localStorage.setItem("carrito", JSON.stringify(carrito));
-
-    console.log(carrito);
-
+    //LLAMAMOS A LA FUNCION ACTUALIZAR CARRITO
     actualizarCarrito();
 }
 
@@ -85,6 +97,8 @@ modalCarrito.addEventListener("click", (event) => {
     event.stopPropagation();
 });
 
+//FUNCION ELIMINAR PRODUCTOS DEL CARRITO
+
 function eliminarProducto(id) {
     let productoAEliminar = carrito.find((el) => el.id == id);
 
@@ -99,6 +113,7 @@ function eliminarProducto(id) {
     actualizarCarrito();
 }
 
+//FUNCION ACTUALIZAR CARRITO
 function actualizarCarrito() {
     contenedorCarrito.innerHTML = "";
 
@@ -106,7 +121,7 @@ function actualizarCarrito() {
         const div = document.createElement("div");
         div.classList.add("productoEnCarrito");
         div.innerHTML = `
-                        <img class="imagenProducto-Modal" ${producto.img}.src />
+                        
                         <p class="colorProducto-modal" >${producto.nombre}</p>
                         <p class="colorProducto-modal">Precio: $${
                             producto.precio * producto.cantidad
@@ -122,6 +137,7 @@ function actualizarCarrito() {
         contenedorCarrito.appendChild(div);
     });
 
+    //METODO REDUCE PARA SUMAR LOS ITEMS DEL CARRITO
     contadorCarrito.innerText = carrito.length;
     precioTotal.innerText = carrito.reduce(
         (acc, el) => acc + el.precio * el.cantidad,
@@ -129,6 +145,7 @@ function actualizarCarrito() {
     );
 }
 
+//FUNCION PARA FILTRAR LOS PRODUCTOS DEL DOM
 function filtrar() {
     let valorFiltroTalles = selectFiltro.value;
     let valorFiltroPrecios = selectPrecios.value;
@@ -148,10 +165,10 @@ function filtrar() {
     } else if (valorFiltroPrecios == 2) {
         arrayFiltrado = arrayFiltrado.filter((el) => el.precio >= 5000);
     }
-
+    //LLAMAMOS A LA FUNCION MOSTRAR PRODUCTOS CON LOS VALORES FILTRADOS
     mostrarProductos(arrayFiltrado);
 }
-
+//EVENTOS
 selectFiltro.addEventListener("change", () => {
     filtrar();
 });
@@ -159,7 +176,7 @@ selectPrecios.addEventListener("change", () => {
     filtrar();
 });
 
-// ========= API MERCADO PAGO =============
+//API MERCADO PAGO
 
 const finalizarCompra = async () => {
     const productosMP = carrito.map((prod) => {
@@ -198,3 +215,11 @@ const finalizarCompra = async () => {
 
     window.location.replace(data.init_point);
 };
+
+/// FORMULARIO
+
+const botonFormulario = document.getElementById("contacto");
+
+botonFormulario.addEventListener("submit", (e) => {
+    e.stopPropagation();
+});

@@ -14,17 +14,13 @@
             src="https://kit.fontawesome.com/df59baf6b8.js"
             crossorigin="anonymous"
         ></script>
+
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
             href="https://fonts.googleapis.com/css2?family=Mate+SC&display=swap"
             rel="stylesheet"
         />
         <link rel="stylesheet" href="/Styles/Style.css" />
-        <script
-            src="https://code.jquery.com/jquery-3.6.0.min.js"
-            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-            crossorigin="anonymous"
-        ></script>
     </head>
     <body>
         <div class="container-fluid">
@@ -32,6 +28,7 @@
             <header>
                 <div class="nav-container">
                     <img
+                        id="logo"
                         class="imagen-header"
                         src="../Img/logoGameOver.png"
                         alt="logo game over"
@@ -59,6 +56,7 @@
                 </div>
                 <div class="welcome-container">
                     <img
+                        id="condiciones"
                         class="img-welcome"
                         src="../Img/welcome.png"
                         alt="welcome "
@@ -80,11 +78,10 @@
                     <img
                         class="gameOver-img"
                         src="../Img/OrderNow.png"
-                        <!--
                         alt="ordernNow"
                     />
                 </div>
-
+                <!-- SELECTORES PARA FILTRAR LOS PRODUCTOS -->
                 <h3 class="h3-filtrar">Filtrar por:</h3>
                 <select id="categoria">
                     <option value="all">Categoria</option>
@@ -99,31 +96,17 @@
                     <option value="1">0 - 5000</option>
                     <option value="2">+5000</option>
                 </select>
-
-                <div id="contenedor-productos" class="tarjetas">
-                    <!-- <div class="producto">
-                    <img src="/img/buzo.jpg" alt="">
-                    <h3>Buzo 1</h3>
-                    <p>Un buzo que re va con vos</p>
-                    <p>Talle: L</p>
-                    <p class="precioProducto">Precio: $1200</p>
-                    <button class="boton-agregar">Agregar <i class="fas fa-shopping-cart"></i></button>
-                </div> -->
-                </div>
+                <!-- CONTENEDOR PARA MOSTRAR LAS CARDS -->
+                <div id="contenedor-productos" class="tarjetas"></div>
             </main>
+            <!-- CONTENEDOR PARA EL MODAL (CARRITO) -->
             <div class="modal-contenedor">
                 <div class="modal-carrito">
                     <h3>Carrito</h3>
                     <button id="carritoCerrar">
                         <i class="fas fa-times-circle"></i>
                     </button>
-                    <div id="carrito-contenedor">
-                        <!-- <div class="productoEnCarrito">
-                            <p>Buzo 1</p>
-                            <p>Precio: $1200</p>
-                            <button class="boton-eliminar"><i class="fas fa-trash-alt"></i></button>
-                        </div> -->
-                    </div>
+                    <div id="carrito-contenedor"></div>
                     <p class="precioProducto">
                         Precio total: $<span id="precioTotal"></span>
                     </p>
@@ -136,83 +119,64 @@
                 </div>
             </div>
             <!-- FORMULARIO DE CONTACTO -->
+            <h2 class="titulo-form">Contactanos</h2>
             <div id="contacto" class="form__contenedor">
-                <h2 class="titulo__form">Dejanos tu comentario.</h2>
-                <div class="row g-3">
-                    <div class="col">
+                <form id="formCursos">
+                    <div>
+                        <label>
+                            <input
+                                class="glass formancho"
+                                type="text"
+                                name="nombreForm"
+                                placeholder="Ingrese su nombre"
+                                required
+                            />
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <input
+                                class="glass formancho"
+                                type="email"
+                                name="emailForm"
+                                placeholder="Inrese su E-mail"
+                                required
+                            />
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <textarea
+                                class="glass"
+                                name="comentarioForm"
+                                cols="30"
+                                rows="5"
+                                placeholder="Dejanos tu consulta. Te responderemos a la brevedad"
+                                required
+                            ></textarea>
+                        </label>
+                    </div>
+                    <div class="form-item">
                         <input
-                            type="text"
-                            class="form-control"
-                            placeholder="Nombre"
-                            aria-label="First name"
-                            required
+                            class="button glass formancho"
+                            type="submit"
+                            value="Enviar"
                         />
                     </div>
-                    <div class="col">
-                        <input
-                            type="text"
-                            class="form-control"
-                            placeholder="Apellido"
-                            aria-label="Last name"
-                            required
-                        />
-                    </div>
-                </div>
-                <div>
-                    <div class="mb-3">
-                        <label
-                            for="exampleFormControlInput1"
-                            class="form-label"
-                        ></label>
-                        <input
-                            type="email"
-                            class="form-control"
-                            id="exampleFormControlInput1"
-                            placeholder="mail@ejemplo.com"
-                            required
-                        />
-                    </div>
-                    <div class="mb-3">
-                        <label
-                            for="exampleFormControlTextarea1"
-                            class="form-label"
-                        ></label>
-                        <textarea
-                            class="form-control"
-                            id="exampleFormControlTextarea1"
-                            rows="3"
-                            placeholder="Dejanos tu comentario"
-                            required
-                        ></textarea>
-                    </div>
-                </div>
-                <button
-                    type="submit"
-                    id="modal-abrir"
-                    class="btn-enviar btn-success my-3 btn-form"
-                >
-                    Enviar
-                </button>
-                <!-- MODAL DE RESPUESTA AL FORM -->
-                <div id="modal-container" class="modal-container">
-                    <div id="modal">
-                        <h3 class="titulo__modal-form">
-                            ¡Muchas gracias por tu mensaje!
-                        </h3>
-                        <hr />
-                        <p class="mensaje__modal-form">
-                            Leeremos tu consulta y en breve te contestaremos.
-                        </p>
-                        <div id="modal-content"></div>
-                        <button
-                            id="modal-cerrar"
-                            class="btn btn-outline-danger btn-modal"
-                        >
-                            Cerrar
-                        </button>
-                    </div>
-                </div>
+                </form>
             </div>
+            <footer>
+                <div class="div-footer">
+                    <div class="imgFooter-container">
+                        <a href="#logo">
+                            <img
+                                src="/Img/logoGameOver.png"
+                                alt="logoGameOver"
+                            />
+                        </a>
+                    </div>
+                </div>
+            </footer>
         </div>
 
         <!-- SCRIPTS JS -->
