@@ -202,10 +202,8 @@ const finalizarCompra = async () => {
             body: JSON.stringify({
                 items: productosMP,
                 back_urls: {
-                    success:
-                        "http://127.0.0.1:5500/Clase15/Ajax2/Ej2/index.html",
-                    failure:
-                        "http://127.0.0.1:5500/Clase15/Ajax2/Ej2/index.html",
+                    success: "https://game-overgames.netlify.app/",
+                    failure: "https://game-overgames.netlify.app/",
                 },
             }),
         }
