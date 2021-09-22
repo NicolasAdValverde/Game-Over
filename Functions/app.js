@@ -197,7 +197,7 @@ const finalizarCompra = async () => {
             method: "POST",
             headers: {
                 Authorization:
-                    "Bearer TEST-530625010370198-052019-70dec8c67253a7ded8355f1a098731e3-418556460",
+                    "Bearer TEST-3999067453709601-091522-e330d922a9676cfbf6874f04940d4393-56393859",
             },
             body: JSON.stringify({
                 items: productosMP,
